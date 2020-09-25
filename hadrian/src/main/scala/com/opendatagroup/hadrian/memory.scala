@@ -115,7 +115,7 @@ package memory {
     * @param name name of the pool
     * @param shared if `true`, this pool is shared (and must not be double-counted for each instance that shares it); if `false`, this pool is not shared
     * @param usage amount of memory used
-    * @param number of items in the pool
+    * @param items of items in the pool
     */
   case class PoolReport(name: String, shared: Boolean, usage: Usage, items: Int) {
     override def toString() = s"""pool $name: $usage in $items items${if (shared) " (shared)" else ""}"""

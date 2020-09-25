@@ -1379,13 +1379,13 @@ package jvmcompiler {
       val scanner = new java.util.Scanner(inputStream)
 
       new java.util.Iterator[X] {
-        def hasNext(): Boolean = scanner.hasNextLine
-        def next(): X = {
+        override def hasNext(): Boolean = scanner.hasNextLine
+        override def next(): X = {
           val json = scanner.nextLine()
           val decoder = DecoderFactory.get.jsonDecoder(inputType.schema, json)
           reader.read(null.asInstanceOf[X], decoder)
         }
-        def remove(): Unit = throw new java.lang.UnsupportedOperationException
+        override def remove(): Unit = throw new java.lang.UnsupportedOperationException
       }
     }
 
@@ -1393,7 +1393,7 @@ package jvmcompiler {
       * 
       * The objects produced by this iterator are suitable inputs to the `action` method.
       * 
-      * @param inputStream serialized data
+      * @param inputIterator serialized data
       * @return unserialized data
       */
     def jsonInputIterator[X <: AnyRef](inputIterator: java.util.Iterator[String]): java.util.Iterator[X] = {
@@ -1401,13 +1401,13 @@ package jvmcompiler {
       reader.setSchema(inputType.schema)
 
       new java.util.Iterator[X] {
-        def hasNext(): Boolean = inputIterator.hasNext
-        def next(): X = {
+        override def hasNext(): Boolean = inputIterator.hasNext
+        override def next(): X = {
           val json = inputIterator.next()
           val decoder = DecoderFactory.get.jsonDecoder(inputType.schema, json)
           reader.read(null.asInstanceOf[X], decoder)
         }
-        def remove(): Unit = throw new java.lang.UnsupportedOperationException
+        override def remove(): Unit = throw new java.lang.UnsupportedOperationException
       }
     }
 
@@ -1415,7 +1415,7 @@ package jvmcompiler {
       * 
       * The objects produced by this iterator are suitable inputs to the `action` method.
       * 
-      * @param inputStream serialized data
+      * @param inputIterator serialized data
       * @return unserialized data
       */
     def jsonInputIterator[X <: AnyRef](inputIterator: scala.collection.Iterator[String]): scala.collection.Iterator[X] = {
@@ -1592,7 +1592,7 @@ package jvmcompiler {
 
   /** Interface for a Hadrian scoring engine.
     * 
-    * Create instances using one of [[com.opendatagroup.hadrian.jvmcompiler.PFAEngine$ `PFAEngine`'s "static" methods]], then call `begin` once, `action` once for each datum in the data stream, and `end` once (if the stream ever ends). The rest of the functions are for
+    * Create instances using one of [[com.opendatagroup.hadrian.jvmcompiler.PFAEngine `PFAEngine`'s "static" methods]], then call `begin` once, `action` once for each datum in the data stream, and `end` once (if the stream ever ends). The rest of the functions are for
     *  - examining the scoring engine (`config`, call graph),
     *  - producing acceptable input from serialized streams, other `PFAEngines`, or the Avro library,
     *  - sending output to a serialized stream,

@@ -80,7 +80,7 @@ package errors {
     * A `PFAUserException` can arise if no PFA rules are violated, even when nothing is wrong. The user simply wanted an exception to occur.
     * 
     * @param message human-readable message
-    * @param optional numeric code
+    * @param code numeric code
     * @param pos locator mark, PFA path index, or `None`
     */
   class PFAUserException(override val message: String, val code: Option[Int], val pos: Option[String])

@@ -512,12 +512,12 @@ package ast {
     /** Position in the original source code where this AST element resides (if any).
       */
     def pos: Option[String]
-    /** Check equality for all fields ''except'' `pos`.
-      */
-    override def equals(other: Any): Boolean
-    /** Compute hash code for all fields ''except'' `pos`.
-      */
-    override def hashCode(): Int
+//    /** Check equality for all fields ''except'' `pos`.
+//      */
+//    override def equals(other: Any): Boolean
+//    /** Compute hash code for all fields ''except'' `pos`.
+//      */
+//    override def hashCode(): Int
     /** Walk over tree applying a partial function, returning a list of results in its domain.
       * 
       * @param pf partial function that takes any [[com.opendatagroup.hadrian.ast.Ast Ast]] as an argument, returning anything
@@ -1013,7 +1013,7 @@ package ast {
 
   /** Source for pool data embedded in the original PFA document.
     * 
-    * @param jsonDom already-loaded JSON data
+    * @param jsonDoms already-loaded JSON data
     * @param avroPlaceholder pool type as a placeholder (so it can exist before type resolution)
     */
   case class EmbeddedJsonDomPoolSource(jsonDoms: Map[String, JsonDom], avroPlaceholder: AvroPlaceholder) extends PoolSource {
@@ -1875,7 +1875,7 @@ package ast {
 
   /** Abstract syntax tree for a variable (symbol) reference.
     * 
-    * @param variable (symbol) to reference
+    * @param name (symbol) to reference
     * @param pos source file location from the locator mark
     */
   case class Ref(name: String, pos: Option[String] = None) extends Expression {
@@ -2133,7 +2133,7 @@ package ast {
   /** Abstract syntax tree for an arbitrary literal value.
     * 
     * @param avroPlaceholder data type as a placeholder (so it can exist before type resolution)
-    * @param literal value encoded as a JSON string
+    * @param value value encoded as a JSON string
     * @param pos source file location from the locator mark
     */
   case class Literal(avroPlaceholder: AvroPlaceholder, value: String, pos: Option[String] = None) extends LiteralValue {
