@@ -27,7 +27,7 @@ limitations under the License.
     <url>https://github.com/deep-bi/hadrian</url>
     <inceptionYear>2014</inceptionYear>
 
-    <groupId>com.opendatagroup</groupId>
+    <groupId>io.github.deep-bi</groupId>
     <artifactId>hadrian</artifactId>
     <version>0.8.6</version>
     <packaging>jar</packaging>
